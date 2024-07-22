@@ -1,14 +1,17 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.DependencyInjection;
 using Volo.Abp.Domain.Repositories;
 
 namespace SolbegAPI
 {
+    [AllowAnonymous]
     public class EmployeeService : 
         CrudAppService<
             Employee,
@@ -17,7 +20,9 @@ namespace SolbegAPI
             PagedAndSortedResultRequestDto,
             PostEmployeeDto>,
         IEmployeeService
+        
     {
+
         public EmployeeService(IRepository<Employee, Guid> repository)
             : base(repository)
         { 
